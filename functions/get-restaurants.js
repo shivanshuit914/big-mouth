@@ -3,7 +3,7 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 const defaultResults = process.env.defaultResults || 8;
 
-async function getRestaurants() {
+async function getRestaurants(count = 10) {
   let req = {
     TableName: process.env.restaurant_table,
     Limit: count
@@ -14,10 +14,17 @@ async function getRestaurants() {
 }
 
 module.exports.handler = async () => {
-  let restaurants = await getRestaurants();
+  try {
+    let restaurants = await getRestaurants(defaultResults);
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify(restaurants)
+    return {
+      statusCode: 200,
+      body: JSON.stringify(restaurants)
+    }
+  } catch (error) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify(error.message)
+    }
   }
 }

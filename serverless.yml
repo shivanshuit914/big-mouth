@@ -1,6 +1,6 @@
 service: big-mouth
 
-plugin:
+plugins:
   - serverless-pseudo-parameters
 
 provider:
