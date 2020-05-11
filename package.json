@@ -11,5 +11,10 @@
     "devDependencies": {
         "aws-sdk": "^2.663.0",
         "serverless-pseudo-parameters": "^2.5.0"
+    },
+    "dependencies": {
+        "aws4": "^1.9.1",
+        "axios": "^0.19.2",
+        "mustache": "^4.0.1"
     }
 }
